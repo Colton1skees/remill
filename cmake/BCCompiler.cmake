@@ -184,8 +184,7 @@ function(add_runtime target_name)
       #
       # When the versions do not match, the compilation will fail; we don't really care about
       # this, as the second compiler is only really used to output BC files.
-      # set(additional_windows_settings "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH")
-      set(additional_windows_settings "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH" "-mlong-double-80")
+      set(additional_windows_settings "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH")
     endif()
 
     # The hyper call implementation contains inline assembly for each architecture so we'll need to
@@ -199,7 +198,7 @@ function(add_runtime target_name)
     elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       set(target_decl "-target" "x86_64-apple-macosx11.0.0")
     else()
-      # set(additional_flags -mlong-double-80 -Xclang -mlong-double-80)
+      set(additional_flags -mlong-double-80 -Xclang -mlong-double-80)
       unset(target_decl)
     endif()
 
