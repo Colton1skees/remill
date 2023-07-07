@@ -142,6 +142,11 @@ target_include_directories(remill_settings INTERFACE
   $<INSTALL_INTERFACE:include>
   $<BUILD_INTERFACE:${LLVM_INCLUDE_DIR}>)
 
+add_compile_options ( -Xclang -mlong-double-80)
+target_compile_options(remill_settings INTERFACE
+  -Xclang -mlong-double-80
+)
+
 if(WIN32)
   # warnings and compiler settings
   target_compile_options(remill_settings INTERFACE
@@ -211,9 +216,6 @@ else()
   endif()
 endif()
 
-    target_compile_options(remill_settings INTERFACE
-      -Xclang -mlong-double-80
-    )
 
 target_compile_definitions(remill_settings INTERFACE
   "REMILL_INSTALL_SEMANTICS_DIR=\"${REMILL_INSTALL_SEMANTICS_DIR}\""
