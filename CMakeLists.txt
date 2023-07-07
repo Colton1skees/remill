@@ -211,7 +211,9 @@ else()
   endif()
 endif()
 
-add_compile_options ( -Xclang -Wno-narrowing)
+    target_compile_options(remill_settings INTERFACE
+      -Xclang -mlong-double-80
+    )
 
 target_compile_definitions(remill_settings INTERFACE
   "REMILL_INSTALL_SEMANTICS_DIR=\"${REMILL_INSTALL_SEMANTICS_DIR}\""
