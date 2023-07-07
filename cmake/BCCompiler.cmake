@@ -43,6 +43,20 @@ else()
   set(CMAKE_BC_LINKER "${LLVMLINK_PATH}" CACHE PATH "Bitcode Linker")
 endif()
 
+# When building the bitcode, windows builds error out with complaints about type errors in win sdk headers. E.g.:
+#   - "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h(435,43): error GC871EEFB: unknown type name 'va_list' "va_list              _ArgList"
+# 
+# To fix this in the short term I overwrite both the clang and llvmlink path with values specified in system wide environment variables.
+# On my machine I've modified them to point to:
+#   - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang.exe"
+#   - "C:/Users/colton/source/repos/llvm-project-15.0.7.src/llvm/build/RelWithDebInfo/bin/llvm-link.exe""
+# TODO: Fix this.
+
+if(WIN32)
+  set(CMAKE_BC_COMPILER "$ENV{REMILL_BCC_CLANG}" CACHE PATH "Bitcode Compiler")
+  set(CMAKE_BC_LINKER "$ENV{REMILL_LLVMLINK}" CACHE PATH "Bitcode Linker")
+endif()
+
 #
 # utils
 #
