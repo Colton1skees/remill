@@ -17,7 +17,7 @@ set(DEFAULT_BC_COMPILER_FLAGS
   -ffreestanding -fno-common -fno-builtin -fno-exceptions -fno-rtti
   -fno-asynchronous-unwind-tables -Wno-unneeded-internal-declaration
   -Wno-unused-function -Wgnu-inline-cpp-without-extern
-  -Wno-pass-failed=transform-warning -fshort-wchar -mlong-double-80 -Xclang -mlong-double-80
+  -Wno-pass-failed=transform-warning -fshort-wchar
   ${EXTRA_BC_SYSROOT}
 )
 
@@ -165,6 +165,7 @@ function(add_runtime target_name)
   set(hyper_call_source "${REMILL_LIB_DIR}/Arch/Runtime/HyperCall.cpp")
   list(APPEND source_file_list ${hyper_call_source})
 
+  set(additional_flags "")
   foreach(source_file ${source_file_list})
     get_filename_component(source_file_name "${source_file}" NAME)
     get_filename_component(absolute_source_file_path "${source_file}" ABSOLUTE)
@@ -197,12 +198,13 @@ function(add_runtime target_name)
     elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       set(target_decl "-target" "x86_64-apple-macosx11.0.0")
     else()
+      set(additional_flags -mlong-double-80 -Xclang -mlong-double-80)
       unset(target_decl)
     endif()
 
 
     add_custom_command(OUTPUT "${absolute_output_file_path}"
-      COMMAND "${CMAKE_BC_COMPILER}" ${include_directory_list} ${additional_windows_settings} ${target_decl}  "-DADDRESS_SIZE_BITS=${address_size}" ${definition_list} ${DEFAULT_BC_COMPILER_FLAGS} ${bc_flag_list} ${source_file_option_list} -std=c++17 -Xclang -mlong-double-80 -c "${absolute_source_file_path}" -o "${absolute_output_file_path}"
+      COMMAND "${CMAKE_BC_COMPILER}" ${include_directory_list} ${additional_windows_settings} ${target_decl}  "-DADDRESS_SIZE_BITS=${address_size}" ${definition_list} ${DEFAULT_BC_COMPILER_FLAGS} ${additional_flags} ${bc_flag_list} ${source_file_option_list} -std=c++17 -c "${absolute_source_file_path}" -o "${absolute_output_file_path}"
       MAIN_DEPENDENCY "${absolute_source_file_path}"
       ${dependency_list_directive}
       COMMENT "Building BC object ${absolute_output_file_path}"
