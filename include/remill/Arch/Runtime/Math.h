@@ -52,20 +52,13 @@ static const int kEightyBitsInBytes = 10;
 union union_ld {
   struct {
     uint8_t data[kEightyBitsInBytes];
-    // when building against CUDA, default to 64-bit float80s
-#if !defined(__CUDACC__) && (defined(__x86_64__) || defined(__i386__) || defined(_M_X86))
-    // We are doing x86 on x86, so we have native x86 FP80s, but they
-    // are not available in raw 80-bit native form.
-    //
-    // To get to the internal FP80 representation, we have to use a
-    // `long double` which is (usually! but not always)
-    //  an FP80 padded to a 12 or 16 byte boundary
-    //
+    //...
+#if (!defined(__CUDACC__) && !defined(_WIN32)) && \
+    (defined(__x86_64__) || defined(__i386__) || defined(_M_X86))
+    ///...
     uint8_t padding[sizeof(native_float80_t) - kEightyBitsInBytes];
 #else
-    // The closest native FP type that we can easily deal with is a 64-bit double
-    // this is less than the size of an FP80, so the data variable above will already
-    // enclose it. No extra padding is needed
+      //...
 #endif
   } lds __attribute__((packed));
   native_float80_t ld;
@@ -146,11 +139,11 @@ static_assert(sizeof(float64_t) == sizeof(nan64_t),
 union nan80_t {
   float80_t d;
   struct {
-    uint64_t payload : 62;
-    uint64_t  is_quiet_nan : 1;
-    uint64_t  interger_bit : 1;
-    uint64_t exponent : 15;
+    uint64_t interger_bit : 1;
     uint64_t is_negative : 1;
+    uint64_t payload : 62;
+    uint16_t is_quiet_nan : 1;
+    uint16_t exponent : 15;
   } __attribute__((packed));
 } __attribute__((packed));
 
