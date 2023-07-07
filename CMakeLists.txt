@@ -98,6 +98,7 @@ add_compile_definitions(_HAS_STD_BYTE=0)
 # In another sleigh source file, there is an implicit narrowing conversion.
 # This flag allows implicit narrowing.
 add_compile_options ( -Xclang -Wno-narrowing)
+add_compile_options ( -Xclang -mlong-double-80)
 # Make optimized build debugging easier.
 add_compile_options(/d2Zi+) 
 # Enable debugging information. TODO: Remove this.
@@ -141,11 +142,6 @@ target_include_directories(remill_settings INTERFACE
   $<BUILD_INTERFACE:${REMILL_INCLUDE_DIR}>
   $<INSTALL_INTERFACE:include>
   $<BUILD_INTERFACE:${LLVM_INCLUDE_DIR}>)
-
-add_compile_options ( -Xclang -mlong-double-80)
-target_compile_options(remill_settings INTERFACE
-  -Xclang -mlong-double-80
-)
 
 if(WIN32)
   # warnings and compiler settings
