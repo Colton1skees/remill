@@ -97,8 +97,7 @@ set(sleigh_ADDITIONAL_PATCHES "${sleigh_patches}" CACHE STRING "" FORCE)
 add_compile_definitions(_HAS_STD_BYTE=0)
 # In another sleigh source file, there is an implicit narrowing conversion.
 # This flag allows implicit narrowing.
-add_compile_options ( -Xclang -mlong-double-80)
-add_compile_options ( -Xclang -Wno-narrowing -Xclang -mlong-double-80)
+add_compile_options ( -Xclang -Wno-narrowing)
 # Make optimized build debugging easier.
 add_compile_options(/d2Zi+) 
 # Enable debugging information. TODO: Remove this.
@@ -153,6 +152,7 @@ if(WIN32)
     /wd4100 /wd4127 /wd4512 /wd4505 /wd4610 /wd4510 /wd4702
     /wd4245 /wd4706 /wd4310 /wd4701 /wd4703 /wd4389 /wd4611
     /wd4805 /wd4204 /wd4577 /wd4091 /wd4592 /wd4324
+    -Xclang -mlong-double-80
   )
 
   target_compile_definitions(remill_settings INTERFACE
