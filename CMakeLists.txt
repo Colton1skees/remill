@@ -25,11 +25,6 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/utils.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
-set(REMILL_ENABLE_TESTING OFF)
-if(REMILL_ENABLE_TESTING)
-  include(CTest)
-endif()
-
 message(STATUS "Compiler ID is ${CMAKE_C_COMPILER_ID}")
 
 #
@@ -305,7 +300,6 @@ InstallExternalTarget("ext_llvmlink" "${LLVMLINK_PATH}" "BIN" "${INSTALLED_LLVML
 add_custom_target(semantics)
 
 # shared JIT tools
-add_subdirectory(test_runner_lib)
 
 # tools
 add_subdirectory(bin)
@@ -335,34 +329,4 @@ if(REMILL_ENABLE_INSTALL_TARGET)
 
   install(EXPORT remillTargets
     DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/remill")
-endif()
-
-# tests
-if(REMILL_ENABLE_TESTING)
-  # Tests require enabling exports on binaries
-  # https://cmake.org/cmake/help/latest/variable/CMAKE_ENABLE_EXPORTS.html#variable:CMAKE_ENABLE_EXPORTS
-  set(CMAKE_ENABLE_EXPORTS ON)
-
-  find_package(Threads REQUIRED)
-  add_custom_target(test_dependencies)
-
-  if(REMILL_ENABLE_TESTING_SLEIGH_THUMB)
-    message(STATUS "thumb tests enabled")
-    add_subdirectory(tests/Thumb)
-  endif()
-
-  if(REMILL_ENABLE_TESTING_SLEIGH_PPC)
-    message(STATUS "ppc tests enabled")
-    add_subdirectory(tests/PPC)
-  endif()
-
-  if(REMILL_ENABLE_TESTING_X86)
-    message(STATUS "X86 tests enabled")
-    add_subdirectory(tests/X86)
-  endif()
-
-  if(REMILL_ENABLE_TESTING_AARCH64)
-    message(STATUS "aarch64 tests enabled")
-    add_subdirectory(tests/AArch64)
-  endif()
 endif()
