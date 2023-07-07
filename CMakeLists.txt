@@ -98,6 +98,11 @@ add_compile_definitions(_HAS_STD_BYTE=0)
 # In another sleigh source file, there is an implicit narrowing conversion.
 # This flag allows implicit narrowing.
 add_compile_options ( -Xclang -Wno-narrowing)
+# Make optimized build debugging easier.
+add_compile_options(/d2Zi+) 
+# Enable debugging information. TODO: Remove this.
+add_compile_options(/Zi) 
+
 # GHIDRA SLEIGH
 FetchContent_Declare(sleigh
   GIT_REPOSITORY https://github.com/lifting-bits/sleigh.git
