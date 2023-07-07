@@ -52,10 +52,10 @@ endif()
 #   - "C:/Users/colton/source/repos/llvm-project-15.0.7.src/llvm/build/RelWithDebInfo/bin/llvm-link.exe""
 # TODO: Fix this.
 
-if(WIN32)
-  set(CMAKE_BC_COMPILER "$ENV{REMILL_BCC_CLANG}" CACHE PATH "Bitcode Compiler")
-  set(CMAKE_BC_LINKER "$ENV{REMILL_LLVMLINK}" CACHE PATH "Bitcode Linker")
-endif()
+set(CMAKE_BC_COMPILER "$ENV{REMILL_BCC_CLANG}" CACHE PATH "Bitcode Compiler")
+set(CMAKE_BC_LINKER "$ENV{REMILL_BCC_LLVMLINK}" CACHE PATH "Bitcode Linker")
+message(STATUS "The following compiler has been selected to compile the bitcode: ${CMAKE_BC_COMPILER}")
+message(STATUS "The following linker has been selected to link the bitcode: ${CMAKE_BC_LINKER}")
 
 #
 # utils
