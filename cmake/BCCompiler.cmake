@@ -46,14 +46,11 @@ endif()
 # When building the bitcode, windows builds error out with complaints about type errors in win sdk headers. E.g.:
 #   - "C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_wstdio.h(435,43): error GC871EEFB: unknown type name 'va_list' "va_list              _ArgList"
 # 
-# To fix this in the short term I overwrite both the clang and llvmlink path with values specified in system wide environment variables.
-# On my machine I've modified them to point to:
-#   - "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/Llvm/x64/bin/clang.exe"
-#   - "C:/Users/colton/source/repos/llvm-project-15.0.7.src/llvm/build/RelWithDebInfo/bin/llvm-link.exe""
-# TODO: Fix this.
+# To fix this in the short term I've hardcoded both the bitcode compiler and linker.
+# TODO: Fix.
 
-set(CMAKE_BC_COMPILER "$ENV{REMILL_BCC_CLANG}" CACHE PATH "Bitcode Compiler")
-set(CMAKE_BC_LINKER "$ENV{REMILL_BCC_LLVMLINK}" CACHE PATH "Bitcode Linker")
+set(CMAKE_BC_COMPILER "C:\Users\colton\source\repos\cxx-common-cmake-win\cxx-common-cmake\build\llvm-prefix\src\llvm-build\bin\clang-cl.exe")
+set(CMAKE_BC_LINKER "C:\Users\colton\source\repos\cxx-common-cmake-win\cxx-common-cmake\build\llvm-prefix\src\llvm-build\bin\llvm-link.exe")
 message(STATUS "The following compiler has been selected to compile the bitcode: ${CMAKE_BC_COMPILER}")
 message(STATUS "The following linker has been selected to link the bitcode: ${CMAKE_BC_LINKER}")
 
