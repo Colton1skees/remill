@@ -153,8 +153,6 @@ if(WIN32)
     /wd4245 /wd4706 /wd4310 /wd4701 /wd4703 /wd4389 /wd4611
     /wd4805 /wd4204 /wd4577 /wd4091 /wd4592 /wd4324
     /DLLVM_FORCE_USE_OLD_TOOLCHAIN
-    -Xclang
-    -mlong-double-80 
     -Xclang -mlong-double-80 
   )
 
