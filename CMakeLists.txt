@@ -25,6 +25,7 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/utils.cmake")
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/options.cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
+set(REMILL_ENABLE_TESTING OFF)
 if(REMILL_ENABLE_TESTING)
   include(CTest)
 endif()
