@@ -198,7 +198,7 @@ function(add_runtime target_name)
     elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
       set(target_decl "-target" "x86_64-apple-macosx11.0.0")
     else()
-      set(additional_flags -mlong-double-80 -Xclang -mlong-double-80)
+      # set(additional_flags -mlong-double-80 -Xclang -mlong-double-80)
       unset(target_decl)
     endif()
 
