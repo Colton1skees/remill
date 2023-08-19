@@ -146,11 +146,11 @@ static_assert(sizeof(float64_t) == sizeof(nan64_t),
 union nan80_t {
   float80_t d;
   struct {
-    uint64_t payload : 62;
-    uint64_t  is_quiet_nan : 1;
-    uint64_t  interger_bit : 1;
-    uint64_t exponent : 15;
+    uint64_t interger_bit : 1;
     uint64_t is_negative : 1;
+    uint64_t payload : 62;
+    uint16_t is_quiet_nan : 1;
+    uint16_t exponent : 15;
   } __attribute__((packed));
 } __attribute__((packed));
 
