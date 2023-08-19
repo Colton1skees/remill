@@ -42,6 +42,11 @@ static_assert(8 == sizeof(float128_t), "Invalid `float128_t` size.");
   #else
   typedef long double native_float80_t;
   #endif
+#if !defined(_WIN32)
+  static_assert(10 <= sizeof(native_float80_t), "Invalid `native_float80_t` size.");
+#else
+  static_assert(8 <= sizeof(double), "Invalid `native_float80_t` size.");
+#endif
 #else
   typedef double native_float80_t;
   static_assert(8 == sizeof(native_float80_t), "Invalid `native_float80_t` size.");
@@ -60,7 +65,9 @@ union union_ld {
     // `long double` which is (usually! but not always)
     //  an FP80 padded to a 12 or 16 byte boundary
     //
-    uint8_t padding[sizeof(native_float80_t) - kEightyBitsInBytes];
+    #if !defined(_WIN32)
+    uint8_t padding[sizeof(double) - kEightyBitsInBytes];
+    #endif
 #else
     // The closest native FP type that we can easily deal with is a 64-bit double
     // this is less than the size of an FP80, so the data variable above will already
@@ -155,6 +162,7 @@ union nan80_t {
 
 static_assert(sizeof(float80_t) == sizeof(nan80_t),
               "Invalid packing of `nan80_t`.");
+
 
 #if __has_include(<cmath>)
 #  include <cmath>
