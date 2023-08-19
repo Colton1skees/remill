@@ -19,6 +19,7 @@
 struct Memory;
 struct State;
 
+#include "vadefs.h"
 #include <cstdint>
 #include <cstdarg>
 #include <limits>
