@@ -204,7 +204,7 @@ function(add_runtime target_name)
 
 
     add_custom_command(OUTPUT "${absolute_output_file_path}"
-      COMMAND "${CMAKE_BC_COMPILER}" ${include_directory_list} ${additional_windows_settings} -D_NO_CRT_STDIO_INLINE=1 ${target_decl}  "-DADDRESS_SIZE_BITS=${address_size}" ${definition_list} ${DEFAULT_BC_COMPILER_FLAGS} ${additional_flags} ${bc_flag_list} ${source_file_option_list} -std=c++17 -c "${absolute_source_file_path}" -o "${absolute_output_file_path}"
+      COMMAND "${CMAKE_BC_COMPILER}" ${include_directory_list} ${additional_windows_settings} -D_NO_CRT_STDIO_INLINE=1 -D_INC_SWPRINTF_INL_=1 ${target_decl}  "-DADDRESS_SIZE_BITS=${address_size}" ${definition_list} ${DEFAULT_BC_COMPILER_FLAGS} ${additional_flags} ${bc_flag_list} ${source_file_option_list} -std=c++17 -c "${absolute_source_file_path}" -o "${absolute_output_file_path}"
       MAIN_DEPENDENCY "${absolute_source_file_path}"
       ${dependency_list_directive}
       COMMENT "Building BC object ${absolute_output_file_path}"
