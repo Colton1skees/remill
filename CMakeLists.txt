@@ -106,7 +106,7 @@ FetchContent_Declare(sleigh
   GIT_TAG 7c6b742
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register -Xclang -mlong-double-80")
 
 set(sleigh_BUILD_SUPPORT ON CACHE BOOL "" FORCE)
 set(sleigh_BUILD_SLEIGHSPECS ON CACHE BOOL "" FORCE)
@@ -131,10 +131,6 @@ option(REMILL_BUILD_SPARC32_RUNTIME "Build the Runtime for SPARC32. Turn this of
 #
 # target settings
 #
-
-# -mlong-double-80 needs to be enabled when compiling both remill and the bitcode semantics.
-# Otherwise assertion failures occur.
-add_compile_options ( -Xclang -mlong-double-80)
 
 # add everything as public.
 add_library(remill_settings INTERFACE)
