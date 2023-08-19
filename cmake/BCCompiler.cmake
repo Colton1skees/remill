@@ -50,7 +50,7 @@ endif()
 # TODO: Fix.
 
 set(CMAKE_BC_COMPILER "C:/Users/colton/source/repos/cxx-common-cmake-win/cxx-common-cmake/build/install/bin/clang++.exe")
-set(CMAKE_BC_LINKER "C:/Users/colton/source/repos/llvm-project-15.0.7.src/llvm/build/RelWithDebInfo/bin/llvm-link.exe")
+set(CMAKE_BC_LINKER "C:/Users/colton/source/repos/cxx-common-cmake-win/cxx-common-cmake/build/install/bin/llvm-link.exe")
 message(STATUS "The following compiler has been selected to compile the bitcode: ${CMAKE_BC_COMPILER}")
 message(STATUS "The following linker has been selected to link the bitcode: ${CMAKE_BC_LINKER}")
 
