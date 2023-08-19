@@ -19,8 +19,6 @@
 struct Memory;
 struct State;
 
-#undef _CRT_NO_VA_START_VALIDATION
-#define __cplusplus
 #include "vadefs.h"
 #include <cstdint>
 #include <cstdarg>

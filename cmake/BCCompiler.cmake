@@ -184,7 +184,7 @@ function(add_runtime target_name)
       #
       # When the versions do not match, the compilation will fail; we don't really care about
       # this, as the second compiler is only really used to output BC files.
-      set(additional_windows_settings "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH")
+      set(additional_windows_settings "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH -D_NO_CRT_STDIO_INLINE")
     endif()
 
     # The hyper call implementation contains inline assembly for each architecture so we'll need to
