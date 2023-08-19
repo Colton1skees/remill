@@ -94,6 +94,7 @@ add_compile_definitions(_HAS_STD_BYTE=0)
 # In another sleigh source file, there is an implicit narrowing conversion.
 # This flag allows implicit narrowing.
 add_compile_options ( -Xclang -Wno-narrowing)
+
 # Make optimized build debugging easier.
 add_compile_options(/d2Zi+) 
 # Enable debugging information. TODO: Remove this.
@@ -130,6 +131,10 @@ option(REMILL_BUILD_SPARC32_RUNTIME "Build the Runtime for SPARC32. Turn this of
 #
 # target settings
 #
+
+# -mlong-double-80 needs to be enabled when compiling both remill and the bitcode semantics.
+# Otherwise assertion failures occur.
+add_compile_options ( -Xclang -mlong-double-80)
 
 # add everything as public.
 add_library(remill_settings INTERFACE)
