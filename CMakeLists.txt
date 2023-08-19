@@ -106,7 +106,7 @@ FetchContent_Declare(sleigh
   GIT_TAG 7c6b742
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register -Xclang -mlong-double-80")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register")
 
 set(sleigh_BUILD_SUPPORT ON CACHE BOOL "" FORCE)
 set(sleigh_BUILD_SLEIGHSPECS ON CACHE BOOL "" FORCE)
@@ -148,7 +148,7 @@ if(WIN32)
     /wd4457 /wd4458 /wd4459 /wd4503 /wd4624 /wd4722 /wd4800
     /wd4100 /wd4127 /wd4512 /wd4505 /wd4610 /wd4510 /wd4702
     /wd4245 /wd4706 /wd4310 /wd4701 /wd4703 /wd4389 /wd4611
-    /wd4805 /wd4204 /wd4577 /wd4091 /wd4592 /wd4324
+    /wd4805 /wd4204 /wd4577 /wd4091 /wd4592 /wd4324 -Xclang -mlong-double-80
   )
 
   target_compile_definitions(remill_settings INTERFACE
