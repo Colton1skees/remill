@@ -19,6 +19,8 @@
 struct Memory;
 struct State;
 
+#include <cstdint>
+#include <cstdarg>
 #include <limits>
 
 #include "Float.h"
