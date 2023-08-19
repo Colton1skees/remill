@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+#include "vadefs.h"
+#include <cstdint>
+#include <cstdarg>
 #include <algorithm>
 #include <bitset>
 #include <cmath>

@@ -19,7 +19,9 @@
 #include "Builtin.h"
 
 #if __has_include(<cstdint>)
+#  include "vadefs.h"
 #  include <cstdint>
+#  include <cstdarg>
 #  include <cstddef>
 #elif __has_include(<cinttypes>)
 #  include <cinttypes>
