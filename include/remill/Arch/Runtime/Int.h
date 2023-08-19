@@ -20,7 +20,9 @@
 
 #if __has_include(<cstdint>)
 #  include "vadefs.h"
+#  include <stdint.h>
 #  include <cstdint>
+#  include <stdarg.h>
 #  include <cstdarg>
 #  include <cstddef>
 #elif __has_include(<cinttypes>)

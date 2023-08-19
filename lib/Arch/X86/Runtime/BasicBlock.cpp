@@ -15,7 +15,9 @@
  */
 
 #include "vadefs.h"
+#include <stdint.h>
 #include <cstdint>
+#include <stdarg.h>
 #include <cstdarg>
 #include <algorithm>
 #include <bitset>
