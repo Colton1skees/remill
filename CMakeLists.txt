@@ -149,12 +149,8 @@ add_library(remill_settings INTERFACE)
 target_include_directories(remill_settings INTERFACE
   $<BUILD_INTERFACE:${REMILL_INCLUDE_DIR}>
   $<INSTALL_INTERFACE:include>
-<<<<<<< HEAD
-  $<BUILD_INTERFACE:${LLVM_INCLUDE_DIR}>)
-=======
   $<BUILD_INTERFACE:${LLVM_INCLUDE_DIR}>
 )
->>>>>>> master
 
 if(WIN32)
   # warnings and compiler settings
